@@ -14,9 +14,7 @@
 
 ifeq ($(CONFIG_MTK_CPU_CTRL),y)
 obj-y += cpu_ctrl.o
-else
-obj-y += cpu_ctrl_dummy.o
-endif # CONFIG_MTK_CPU_CTRL
+endif
 
 obj-$(CONFIG_MTK_CPU_CTRL_CFP) += cpu_ctrl_cfp.o
 ccflags-y += -I$(srctree)/drivers/misc/mediatek/base/power/include/

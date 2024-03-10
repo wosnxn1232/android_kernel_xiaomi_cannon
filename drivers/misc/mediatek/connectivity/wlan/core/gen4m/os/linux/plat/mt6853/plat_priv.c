@@ -65,6 +65,7 @@ int32_t kalCheckTputLoad(IN struct ADAPTER *prAdapter,
 	       TRUE : FALSE;
 }
 
+#ifdef CONFIG_MTK_TOPO_CTRL
 #if KERNEL_VERSION(5, 4, 0) <= CFG80211_VERSION_CODE
 #else
 int32_t kalBoostCpu(IN struct ADAPTER *prAdapter,
@@ -140,6 +141,7 @@ int32_t kalBoostCpu(IN struct ADAPTER *prAdapter,
 
 	return 0;
 }
+#endif
 #endif
 
 #ifdef CONFIG_WLAN_MTK_EMI

@@ -55,7 +55,9 @@ static int perfmgr_remove(struct platform_device *dev)
 	/*TODO: workaround for k414
 	 * topo_ctrl_exit();
 	 */
+#ifdef CONFIG_MTK_CPU_CTRL
 	cpu_ctrl_exit();
+#endif
 #ifdef CONFIG_MTK_SYSLIMITER
 	syslimiter_exit();
 #endif
@@ -76,9 +78,10 @@ static struct platform_driver perfmgr_driver = {
 
 static int perfmgr_main_data_init(void)
 {
-
+#ifdef CONFIG_MTK_TOPO_CTRL
 	/* get cluster number from topo_ctrl */
 	clstr_num = topo_ctrl_get_nr_clusters();
+#endif
 
 	return 0;
 }

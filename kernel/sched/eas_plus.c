@@ -1807,8 +1807,10 @@ static void task_rotate_work_func(struct work_struct *work)
 	ret = migrate_swap(wr->src_task, wr->dst_task);
 
 	if (ret == 0) {
+#ifdef CONFIG_MTK_EAS_CTRL
 		update_eas_uclamp_min(EAS_UCLAMP_KIR_BIG_TASK, CGROUP_TA,
 				scale_to_percent(SCHED_CAPACITY_SCALE));
+#endif
 		set_uclamp = true;
 		trace_sched_big_task_rotation(wr->src_cpu, wr->dst_cpu,
 						wr->src_task->pid,
@@ -1832,7 +1834,9 @@ static void task_rotate_work_func(struct work_struct *work)
 
 static void task_rotate_reset_uclamp_work_func(struct work_struct *work)
 {
+#ifdef CONFIG_MTK_EAS_CTRL
 	update_eas_uclamp_min(EAS_UCLAMP_KIR_BIG_TASK, CGROUP_TA, 0);
+#endif
 	set_uclamp = false;
 	trace_sched_big_task_rotation_reset(set_uclamp);
 }
